@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "node-hello-world"
-        DOCKERHUB_USER = "your-dockerhub-username"
+        DOCKERHUB_USER = "cloudvaishu" // ← Replace with your actual DockerHub username
     }
 
     stages {
