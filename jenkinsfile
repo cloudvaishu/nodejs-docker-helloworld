@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "node-hello-world"
-        DOCKERHUB_USER = "cloudvaishu" // ← Replace with your actual DockerHub username
+        DOCKERHUB_USER = "cloudvaishu"
     }
 
     stages {
@@ -50,8 +50,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
                         echo "🔐 Logging into DockerHub..."
-                         sh 'echo "${PASSWORD}" | docker login -u "${USERNAME}" --password-stdin'
-
+                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
                     '''
                 }
             }
