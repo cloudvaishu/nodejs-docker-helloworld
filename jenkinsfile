@@ -11,6 +11,23 @@ pipeline {
     }
 
     stages {
+        stage('Disk Cleanup') {
+            steps {
+                sh '''
+                    echo "🧹 Starting disk cleanup..."
+
+                    sudo apt-get clean
+                    sudo journalctl --vacuum-size=100M
+                    sudo rm -rf /tmp/*
+                    sudo rm -rf /var/tmp/*
+                    sudo apt-get autoremove -y
+
+                    echo "📊 Disk usage after cleanup:"
+                    df -h
+                '''
+            }
+        }
+
         stage('Verify Node') {
             steps {
                 sh '''
